@@ -5,7 +5,7 @@ WORKDIR /app
 # Copiar arquivos de dependências
 COPY package*.json ./
 
-# Instalar dependências
+# Instalar todas as dependências (incluindo as de desenvolvimento)
 RUN npm ci
 
 # Copiar código fonte
@@ -23,8 +23,8 @@ WORKDIR /app
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package*.json ./
 
-# Instalar apenas dependências de produção
-RUN npm ci --omit=dev
+# Instalar todas as dependências para garantir que nada falte em produção
+RUN npm ci
 
 # Expor a porta
 EXPOSE 5000
