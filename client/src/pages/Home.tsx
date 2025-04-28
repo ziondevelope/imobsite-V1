@@ -1,5 +1,7 @@
 import HeroBanner from "@/components/home/HeroBanner";
 import FeaturedProperties from "@/components/home/FeaturedProperties";
+import PropertyCarousel from "@/components/home/PropertyCarousel";
+import HomeCategories from "@/components/home/HomeCategories";
 import RecentProperties from "@/components/home/RecentProperties";
 import Services from "@/components/home/Services";
 import TeamSection from "@/components/home/TeamSection";
@@ -17,8 +19,10 @@ export default function Home() {
   return (
     <>
       <HeroBanner />
-      <FeaturedProperties />
+      <PropertyCarousel />
+      <HomeCategories />
       <RecentProperties />
+      <FeaturedProperties />
       <Services />
       <TeamSection />
       <Testimonials />
