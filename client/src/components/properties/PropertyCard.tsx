@@ -26,7 +26,7 @@ export default function PropertyCard({ property, className }: PropertyCardProps)
   const displayLocation = `${neighborhood}, ${city}`;
 
   return (
-    <div className={cn("property-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg", className)}>
+    <div className={cn("property-card bg-zinc-900 rounded-sm overflow-hidden shadow-md border border-zinc-800", className)}>
       <div className="relative">
         <Link href={`/properties/${id}`}>
           <img 
@@ -37,7 +37,7 @@ export default function PropertyCard({ property, className }: PropertyCardProps)
         </Link>
         <div className="absolute top-4 left-4">
           <Badge className={cn(
-            "text-white text-xs font-semibold px-3 py-1 rounded-full",
+            "text-white text-xs font-semibold px-3 py-1 rounded-sm",
             status === "sale" ? "bg-green-600" : "bg-blue-600"
           )}>
             {status === "sale" ? "Venda" : "Aluguel"}
@@ -45,7 +45,7 @@ export default function PropertyCard({ property, className }: PropertyCardProps)
         </div>
         <Link 
           href={`/properties/${id}`}
-          className="absolute bottom-4 right-4 bg-white bg-opacity-90 rounded-full p-2 hover:bg-green-600 hover:text-white transition-colors"
+          className="absolute bottom-4 right-4 bg-zinc-900 rounded-full p-2 hover:bg-green-600 hover:text-white transition-colors border border-zinc-800 text-white"
           aria-label="Ver detalhes"
         >
           <Eye className="h-5 w-5" />
@@ -54,35 +54,35 @@ export default function PropertyCard({ property, className }: PropertyCardProps)
       
       <div className="p-5">
         <Link href={`/properties/${id}`}>
-          <h3 className="font-montserrat font-semibold text-lg mb-2 hover:text-green-600 transition-colors">
+          <h3 className="font-montserrat font-semibold text-lg mb-2 text-white hover:text-green-500 transition-colors">
             {title}
           </h3>
         </Link>
-        <p className="text-zinc-600 text-sm mb-3">{displayLocation}</p>
+        <p className="text-gray-400 text-sm mb-3">{displayLocation}</p>
         
         <div className="flex items-center justify-between mb-4">
-          <span className="text-green-600 font-montserrat font-bold text-xl">
+          <span className="text-green-500 font-montserrat font-bold text-xl">
             {status === "rent" ? `${formattedPrice}/mês` : formattedPrice}
           </span>
         </div>
         
-        <div className="flex space-x-4 text-sm text-zinc-600 border-t border-gray-100 pt-4">
+        <div className="flex space-x-4 text-sm text-gray-400 border-t border-zinc-800 pt-4">
           {bedrooms > 0 && (
             <div className="flex items-center">
-              <Bed className="mr-2 h-4 w-4 text-green-600" />
+              <Bed className="mr-2 h-4 w-4 text-green-500" />
               <span>{bedrooms} {bedrooms === 1 ? 'Quarto' : 'Quartos'}</span>
             </div>
           )}
           
           {bathrooms > 0 && (
             <div className="flex items-center">
-              <Bath className="mr-2 h-4 w-4 text-green-600" />
+              <Bath className="mr-2 h-4 w-4 text-green-500" />
               <span>{bathrooms} {bathrooms === 1 ? 'Banheiro' : 'Banheiros'}</span>
             </div>
           )}
           
           <div className="flex items-center">
-            <MoveHorizontal className="mr-2 h-4 w-4 text-green-600" />
+            <MoveHorizontal className="mr-2 h-4 w-4 text-green-500" />
             <span>{area}m²</span>
           </div>
         </div>

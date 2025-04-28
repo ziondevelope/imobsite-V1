@@ -29,7 +29,7 @@ export default function HeroBanner() {
   };
 
   return (
-    <section className="relative h-[600px] bg-dark overflow-hidden">
+    <section className="relative h-[600px] overflow-hidden bg-zinc-900">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <img 
@@ -43,24 +43,24 @@ export default function HeroBanner() {
       {/* Content */}
       <div className="relative container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
         <h1 className="text-white font-montserrat font-bold text-3xl md:text-5xl mb-6">
-          Encontre o Imóvel dos Seus Sonhos
+          sonhar planejar concretizar
         </h1>
-        <p className="text-white text-lg md:text-xl mb-10 max-w-2xl">
-          Bem-vindo ao seu novo lar
-        </p>
         
         {/* Search Form */}
-        <div className="w-full max-w-5xl bg-white bg-opacity-90 rounded shadow-lg p-6">
-          <h2 className="text-center text-2xl font-bold text-dark mb-4">Buscar Imóveis</h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="w-full max-w-5xl bg-zinc-900 bg-opacity-95 rounded-sm border border-zinc-800 p-6">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
             <div className="col-span-1">
               <Select value={type} onValueChange={setType}>
-                <SelectTrigger className="w-full bg-white">
+                <SelectTrigger className="w-full bg-zinc-800 border-zinc-700 text-white hover:bg-zinc-700">
                   <SelectValue placeholder="Tipo de Imóvel" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-zinc-800 border-zinc-700 text-white">
                   {propertyTypes.map(option => (
-                    <SelectItem key={option.value} value={option.value}>
+                    <SelectItem 
+                      key={option.value} 
+                      value={option.value}
+                      className="hover:bg-zinc-700"
+                    >
                       {option.label}
                     </SelectItem>
                   ))}
@@ -70,12 +70,16 @@ export default function HeroBanner() {
             
             <div className="col-span-1">
               <Select value={status} onValueChange={setStatus}>
-                <SelectTrigger className="w-full bg-white">
+                <SelectTrigger className="w-full bg-zinc-800 border-zinc-700 text-white hover:bg-zinc-700">
                   <SelectValue placeholder="Comprar ou Alugar" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-zinc-800 border-zinc-700 text-white">
                   {statusTypes.map(option => (
-                    <SelectItem key={option.value} value={option.value}>
+                    <SelectItem 
+                      key={option.value} 
+                      value={option.value}
+                      className="hover:bg-zinc-700"
+                    >
                       {option.label}
                     </SelectItem>
                   ))}
@@ -85,15 +89,32 @@ export default function HeroBanner() {
             
             <div className="col-span-1">
               <Select value={neighborhood} onValueChange={setNeighborhood}>
-                <SelectTrigger className="w-full bg-white">
+                <SelectTrigger className="w-full bg-zinc-800 border-zinc-700 text-white hover:bg-zinc-700">
                   <SelectValue placeholder="Localização" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-zinc-800 border-zinc-700 text-white">
                   {locations.map(option => (
-                    <SelectItem key={option.value} value={option.value}>
+                    <SelectItem 
+                      key={option.value} 
+                      value={option.value}
+                      className="hover:bg-zinc-700"
+                    >
                       {option.label}
                     </SelectItem>
                   ))}
+                </SelectContent>
+              </Select>
+            </div>
+            
+            <div className="col-span-1">
+              <Select value="" onValueChange={() => {}}>
+                <SelectTrigger className="w-full bg-zinc-800 border-zinc-700 text-white hover:bg-zinc-700">
+                  <SelectValue placeholder="Preço" />
+                </SelectTrigger>
+                <SelectContent className="bg-zinc-800 border-zinc-700 text-white">
+                  <SelectItem value="até-500k" className="hover:bg-zinc-700">Até R$ 500.000</SelectItem>
+                  <SelectItem value="500k-1m" className="hover:bg-zinc-700">R$ 500.000 - R$ 1.000.000</SelectItem>
+                  <SelectItem value="acima-1m" className="hover:bg-zinc-700">Acima de R$ 1.000.000</SelectItem>
                 </SelectContent>
               </Select>
             </div>

@@ -22,40 +22,14 @@ export default function Header() {
 
   return (
     <>
-      {/* Top Bar with Contact Info */}
-      <div className="bg-zinc-800 text-white py-2 text-sm hidden md:block">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center">
-            <div className="flex space-x-6">
-              <div className="flex items-center">
-                <Phone className="h-4 w-4 mr-2" />
-                <span>(48) 3333-4444</span>
-              </div>
-              <div className="flex items-center">
-                <Mail className="h-4 w-4 mr-2" />
-                <span>contato@imoveisexata.com.br</span>
-              </div>
-              <div className="flex items-center">
-                <MapPin className="h-4 w-4 mr-2" />
-                <span>Av. Beira Mar Norte, 1234, Centro - Florianópolis</span>
-              </div>
-            </div>
-            <div className="flex items-center">
-              <Clock className="h-4 w-4 mr-2" />
-              <span>Seg-Sex: 9h-18h | Sáb: 9h-13h</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Header */}
-      <header className="bg-white shadow-md">
+      {/* Main Header - Dark as in the reference */}
+      <header className="bg-zinc-900 shadow-md sticky top-0 z-50 border-b border-zinc-800">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center py-4">
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link href="/" className="block">
-                <div className="text-zinc-800 font-montserrat font-bold text-2xl">Imóveis Exata</div>
+                <div className="text-white font-montserrat font-bold text-2xl">Imóveis Exata</div>
               </Link>
             </div>
 
@@ -66,8 +40,8 @@ export default function Header() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "text-zinc-800 hover:text-green-600 font-montserrat font-medium text-sm uppercase transition-colors",
-                    location === link.href && "text-green-600"
+                    "text-white hover:text-green-500 font-montserrat font-medium text-sm uppercase transition-colors",
+                    location === link.href && "text-green-500"
                   )}
                 >
                   {link.label}
@@ -79,7 +53,7 @@ export default function Header() {
             <div className="md:hidden">
               <button
                 type="button"
-                className="text-zinc-800 hover:text-green-600 focus:outline-none transition-colors"
+                className="text-white hover:text-green-500 focus:outline-none transition-colors"
                 onClick={toggleMobileMenu}
                 aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               >
@@ -94,15 +68,15 @@ export default function Header() {
 
           {/* Mobile Navigation */}
           {mobileMenuOpen && (
-            <div className="md:hidden py-4 border-t border-gray-200">
+            <div className="md:hidden py-4 border-t border-zinc-800">
               <div className="flex flex-col space-y-4">
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
                     className={cn(
-                      "text-zinc-800 hover:text-green-600 font-montserrat font-medium text-sm uppercase transition-colors",
-                      location === link.href && "text-green-600"
+                      "text-white hover:text-green-500 font-montserrat font-medium text-sm uppercase transition-colors",
+                      location === link.href && "text-green-500"
                     )}
                     onClick={() => setMobileMenuOpen(false)}
                   >
@@ -112,14 +86,14 @@ export default function Header() {
               </div>
               
               {/* Mobile Contact Info */}
-              <div className="mt-6 pt-4 border-t border-gray-200">
-                <div className="flex flex-col space-y-3 text-sm">
+              <div className="mt-6 pt-4 border-t border-zinc-800">
+                <div className="flex flex-col space-y-3 text-sm text-gray-300">
                   <div className="flex items-center">
-                    <Phone className="h-4 w-4 mr-2 text-green-600" />
+                    <Phone className="h-4 w-4 mr-2 text-green-500" />
                     <span>(48) 3333-4444</span>
                   </div>
                   <div className="flex items-center">
-                    <Mail className="h-4 w-4 mr-2 text-green-600" />
+                    <Mail className="h-4 w-4 mr-2 text-green-500" />
                     <span>contato@imoveisexata.com.br</span>
                   </div>
                 </div>
