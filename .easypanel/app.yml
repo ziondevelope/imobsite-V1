@@ -1,0 +1,23 @@
+name: imoveis-exata
+type: docker
+docker:
+  image: imoveis-exata-app
+  dockerfile: Dockerfile
+  context: ..
+  ports:
+    - "5000:5000"
+resources:
+  memory: 512Mi
+  cpu: 0.5
+domains:
+  - domain: imoveisexata.com.br
+    paths:
+      - path: /
+        port: 5000
+health:
+  path: /
+  timeout: 5s
+  interval: 10s
+env:
+  - name: NODE_ENV
+    value: production
