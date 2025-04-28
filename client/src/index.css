@@ -15,9 +15,9 @@
   --card-foreground: 20 14.3% 4.1%;
   --border: 20 5.9% 90%;
   --input: 20 5.9% 90%;
-  --primary: 29 90% 55%; /* #f68322 - Imóveis Exata orange */
+  --primary: 142 71% 35%; /* Verde escuro para o esquema do site */
   --primary-foreground: 0 0% 100%;
-  --secondary: 0 0% 33.3%; /* #555555 */
+  --secondary: 240 6% 26%; /* #383c42 - Cor secundária escura */
   --secondary-foreground: 0 0% 100%;
   --accent: 0 0% 96.9%; /* #f8f8f8 */
   --accent-foreground: 24 9.8% 10%;
@@ -26,15 +26,15 @@
   --ring: 20 14.3% 4.1%;
   --radius: 0.5rem;
 
-  --chart-1: 29 90% 55%;
+  --chart-1: 142 71% 35%;
   --chart-2: 217 91% 60%;
-  --chart-3: 142 71% 45%;
+  --chart-3: 29 90% 55%;
   --chart-4: 316 70% 50%;
   --chart-5: 41 96% 50%;
   
   --sidebar-background: 240 10% 3.9%;
   --sidebar-foreground: 0 0% 98%;
-  --sidebar-primary: 29 90% 55%;
+  --sidebar-primary: 142 71% 35%;
   --sidebar-primary-foreground: 0 0% 100%;
   --sidebar-accent: 240 3.7% 15.9%;
   --sidebar-accent-foreground: 0 0% 98%;
@@ -53,7 +53,7 @@
   --card-foreground: 0 0% 98%;
   --border: 240 3.7% 15.9%;
   --input: 240 3.7% 15.9%;
-  --primary: 29 90% 55%;
+  --primary: 142 71% 35%;
   --primary-foreground: 0 0% 98%;
   --secondary: 240 3.7% 15.9%;
   --secondary-foreground: 0 0% 98%;

@@ -29,7 +29,7 @@ export default function HeroBanner() {
   };
 
   return (
-    <section className="relative h-[500px] bg-dark overflow-hidden">
+    <section className="relative h-[600px] bg-dark overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <img 
@@ -37,7 +37,7 @@ export default function HeroBanner() {
           alt="Imóveis de luxo" 
           className="object-cover w-full h-full"
         />
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-70"></div>
       </div>
       
       {/* Content */}
@@ -45,16 +45,17 @@ export default function HeroBanner() {
         <h1 className="text-white font-montserrat font-bold text-3xl md:text-5xl mb-6">
           Encontre o Imóvel dos Seus Sonhos
         </h1>
-        <p className="text-white text-lg md:text-xl mb-8 max-w-2xl">
-          Casas, apartamentos e imóveis comerciais com as melhores condições do mercado.
+        <p className="text-white text-lg md:text-xl mb-10 max-w-2xl">
+          Bem-vindo ao seu novo lar
         </p>
         
         {/* Search Form */}
-        <div className="w-full max-w-4xl bg-white rounded-lg shadow-lg p-6">
+        <div className="w-full max-w-5xl bg-white bg-opacity-90 rounded shadow-lg p-6">
+          <h2 className="text-center text-2xl font-bold text-dark mb-4">Buscar Imóveis</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="col-span-1">
               <Select value={type} onValueChange={setType}>
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full bg-white">
                   <SelectValue placeholder="Tipo de Imóvel" />
                 </SelectTrigger>
                 <SelectContent>
@@ -69,7 +70,7 @@ export default function HeroBanner() {
             
             <div className="col-span-1">
               <Select value={status} onValueChange={setStatus}>
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full bg-white">
                   <SelectValue placeholder="Comprar ou Alugar" />
                 </SelectTrigger>
                 <SelectContent>
@@ -84,7 +85,7 @@ export default function HeroBanner() {
             
             <div className="col-span-1">
               <Select value={neighborhood} onValueChange={setNeighborhood}>
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full bg-white">
                   <SelectValue placeholder="Localização" />
                 </SelectTrigger>
                 <SelectContent>
@@ -100,9 +101,9 @@ export default function HeroBanner() {
             <div className="col-span-1">
               <Button 
                 onClick={handleSearch} 
-                className="w-full font-montserrat font-medium"
+                className="w-full bg-green-600 hover:bg-green-700 text-white font-medium"
               >
-                <Search className="mr-2 h-4 w-4" /> Buscar Imóveis
+                <Search className="mr-2 h-4 w-4" /> Buscar
               </Button>
             </div>
           </div>
