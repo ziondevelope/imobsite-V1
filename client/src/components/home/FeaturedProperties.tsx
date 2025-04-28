@@ -34,33 +34,33 @@ export default function FeaturedProperties() {
   );
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-zinc-900">
       <div className="container mx-auto px-4">
-        <div className="mb-8 flex justify-between items-center">
+        <div className="mb-10 flex justify-between items-center">
           <div>
-            <h2 className="text-3xl font-montserrat font-bold text-zinc-800 mb-2">
+            <h2 className="text-3xl font-montserrat font-bold text-white mb-2">
               Imóveis selecionados
             </h2>
-            <p className="text-zinc-600">
+            <p className="text-gray-400">
               Confira os melhores imóveis disponíveis para você
             </p>
           </div>
           
           {totalSlides > 1 && (
-            <div className="flex space-x-2">
+            <div className="flex space-x-3">
               <button 
                 onClick={prevSlide} 
-                className="bg-green-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-700 transition-colors"
+                className="bg-zinc-800 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors border border-zinc-700"
                 aria-label="Anterior"
               >
-                <ChevronLeft size={24} />
+                <ChevronLeft size={20} />
               </button>
               <button 
                 onClick={nextSlide} 
-                className="bg-green-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-700 transition-colors"
+                className="bg-zinc-800 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors border border-zinc-700"
                 aria-label="Próximo"
               >
-                <ChevronRight size={24} />
+                <ChevronRight size={20} />
               </button>
             </div>
           )}
@@ -82,11 +82,11 @@ export default function FeaturedProperties() {
           </div>
         </div>
 
-        <div className="mt-10 text-center">
+        <div className="mt-12 text-center">
           <Link href="/properties">
             <Button 
               size="lg" 
-              className="font-montserrat font-medium bg-green-600 hover:bg-green-700 text-white"
+              className="font-montserrat font-medium bg-green-600 hover:bg-green-700 text-white rounded-sm"
             >
               Ver Todos os Imóveis
             </Button>
