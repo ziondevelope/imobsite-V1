@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { Link } from "wouter";
+import { ArrowRight } from "lucide-react";
 import PropertyCard from "@/components/properties/PropertyCard";
 import { Property, properties } from "@/lib/data";
 
@@ -14,18 +16,28 @@ export default function RecentProperties() {
   }, []);
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="mb-12 text-center">
-          <h2 className="text-3xl font-montserrat font-bold text-dark mb-2">
-            Imóveis Recentes
-          </h2>
-          <p className="text-secondary">
-            Confira as novidades que acabaram de chegar
-          </p>
+        <div className="mb-10 flex flex-col md:flex-row justify-between items-start md:items-center">
+          <div>
+            <h2 className="text-3xl font-montserrat font-bold text-zinc-800 mb-2">
+              Imóveis Recentes
+            </h2>
+            <p className="text-zinc-600">
+              Confira as novidades que acabaram de chegar
+            </p>
+          </div>
+          
+          <Link 
+            href="/properties" 
+            className="group mt-4 md:mt-0 flex items-center text-green-600 font-montserrat font-medium hover:text-green-700 transition-colors"
+          >
+            Ver todos os imóveis
+            <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
+          </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {recentProperties.map((property) => (
             <PropertyCard key={property.id} property={property} />
           ))}
