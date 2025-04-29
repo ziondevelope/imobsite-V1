@@ -59,10 +59,16 @@ export default function HomeCategories() {
     <section className="py-16 bg-[#18181B]">
       <h2 className="text-3xl font-bold text-center text-white mb-8">Explore por Região</h2>
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {categories.map((category) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
+          {categories.map((category, index) => (
+            <Link key={category.id} href={category.link} 
+              className={`${index === 0 ? 'lg:col-span-3 lg:row-span-2' : 
+                index === 1 ? 'lg:col-span-3' : 
+                'lg:col-span-2'}`}>
             <Link key={category.id} href={category.link}>
-              <div className="relative h-48 rounded-lg overflow-hidden cursor-pointer group">
+              <div className={`relative rounded-lg overflow-hidden cursor-pointer group ${
+                index === 0 ? 'h-96' : 'h-48'
+              }`}>
                 <img
                   src={category.image}
                   alt={category.title}
