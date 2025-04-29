@@ -65,7 +65,6 @@ export default function HomeCategories() {
               className={`${index === 0 ? 'lg:col-span-3 lg:row-span-2' : 
                 index === 1 ? 'lg:col-span-3' : 
                 'lg:col-span-2'}`}>
-            <Link key={category.id} href={category.link}>
               <div className={`relative rounded-lg overflow-hidden cursor-pointer group ${
                 index === 0 ? 'h-96' : 'h-48'
               }`}>
