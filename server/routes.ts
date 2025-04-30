@@ -214,9 +214,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get(`${apiPrefix}/admin/stats`, async (req, res) => {
     try {
-      const properties = await storage.getAllProperties();
-      const agents = await storage.getAllAgents();
-      const messages = await storage.getAllContactMessages();
+      const [properties, agents, messages] = await Promise.all([
+        storage.getAllProperties(),
+        storage.getAllAgents(),
+        storage.getAllContactMessages()
+      ]);
 
       res.json({
         totalProperties: properties.length,
@@ -225,6 +227,56 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     } catch (error) {
       res.status(500).json({ message: "Error fetching admin stats", error });
+    }
+  });
+
+  // Admin Messages Routes
+  app.get(`${apiPrefix}/contact/messages`, async (req, res) => {
+    try {
+      const messages = await storage.getAllContactMessages();
+      res.json(messages);
+    } catch (error) {
+      res.status(500).json({ message: "Error fetching messages", error });
+    }
+  });
+
+  app.delete(`${apiPrefix}/contact/messages/:id`, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      await storage.deleteContactMessage(id);
+      res.status(204).send();
+    } catch (error) {
+      res.status(500).json({ message: "Error deleting message", error });
+    }
+  });
+
+  // Admin Agent Routes
+  app.post(`${apiPrefix}/agents`, async (req, res) => {
+    try {
+      const agent = await storage.createAgent(req.body);
+      res.status(201).json(agent);
+    } catch (error) {
+      res.status(500).json({ message: "Error creating agent", error });
+    }
+  });
+
+  app.put(`${apiPrefix}/agents/:id`, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const agent = await storage.updateAgent(id, req.body);
+      res.json(agent);
+    } catch (error) {
+      res.status(500).json({ message: "Error updating agent", error });
+    }
+  });
+
+  app.delete(`${apiPrefix}/agents/:id`, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      await storage.deleteAgent(id);
+      res.status(204).send();
+    } catch (error) {
+      res.status(500).json({ message: "Error deleting agent", error });
     }
   });
 
