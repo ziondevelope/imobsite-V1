@@ -34,6 +34,8 @@ export interface IStorage {
   getRecentProperties(limit?: number): Promise<Property[]>;
   searchProperties(filters: Partial<Property>): Promise<Property[]>;
   createProperty(property: InsertProperty): Promise<Property>;
+  updateProperty(id: number, property: InsertProperty): Promise<Property>;
+  deleteProperty(id: number): Promise<void>;
 
   // Agent operations
   getAllAgents(): Promise<Agent[]>;
@@ -158,19 +160,19 @@ export class MemStorage implements IStorage {
     return property;
   }
 
-  async updateProperty(id: number, property: InsertProperty): Promise<Property> {
+  async updateProperty(id: number, insertProperty: InsertProperty): Promise<Property> {
     const existingProperty = this.properties.get(id);
     if (!existingProperty) {
       throw new Error(`Property with ID ${id} not found`);
     }
-    
-    const updatedProperty: Property = { 
+
+    const updatedProperty: Property = {
       ...existingProperty,
-      ...property,
+      ...insertProperty,
       id,
       updatedAt: new Date()
     };
-    
+
     this.properties.set(id, updatedProperty);
     return updatedProperty;
   }
@@ -182,16 +184,6 @@ export class MemStorage implements IStorage {
     this.properties.delete(id);
   }
 
-    const id = this.propertyCurrentId++;
-    const now = new Date();
-    const property: Property = { 
-      ...insertProperty, 
-      id, 
-      createdAt: now 
-    };
-    this.properties.set(id, property);
-    return property;
-  }
 
   // Agent operations
   async getAllAgents(): Promise<Agent[]> {
