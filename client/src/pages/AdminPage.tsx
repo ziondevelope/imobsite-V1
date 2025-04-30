@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Sidebar, SidebarContent, SidebarHeader } from "@/components/ui/sidebar";
+import { Sidebar, SidebarContent, SidebarHeader, SidebarProvider } from "@/components/ui/sidebar";
 
 interface AdminStats {
   totalProperties: number;
@@ -86,7 +86,8 @@ export default function AdminPage() {
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
-      <Sidebar>
+      <SidebarProvider>
+        <Sidebar>
         <SidebarHeader className="p-4">
           <h2 className="text-xl font-bold">Painel Admin</h2>
         </SidebarHeader>
@@ -263,6 +264,7 @@ export default function AdminPage() {
           </TabsContent>
         </Tabs>
       </div>
+      </SidebarProvider>
     </div>
   );
 }
