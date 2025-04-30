@@ -7,6 +7,7 @@ import PropertyDetailsPage from "@/pages/PropertyDetailsPage";
 import PropertiesListPage from "@/pages/PropertiesListPage";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import AdminPage from "@/pages/AdminPage";
 
 function Router() {
   return (
