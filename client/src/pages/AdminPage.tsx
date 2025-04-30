@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'wouter';
+import { useLocation } from 'wouter';
 
 interface AdminStats {
   totalProperties: number;
@@ -15,14 +15,14 @@ export default function AdminPage() {
     totalAgents: 0,
     totalMessages: 0
   });
-  const navigate = useNavigate();
+  const [, setLocation] = useLocation();
 
   useEffect(() => {
     const checkAdmin = async () => {
       try {
         const response = await fetch('/api/admin/check');
         if (!response.ok) {
-          navigate('/');
+          setLocation('/');
           return;
         }
         setIsAdmin(true);
@@ -31,7 +31,7 @@ export default function AdminPage() {
         setStats(statsData);
       } catch (error) {
         console.error('Error:', error);
-        navigate('/');
+        setLocation('/');
       }
     };
     checkAdmin();
