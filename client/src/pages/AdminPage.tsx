@@ -92,24 +92,26 @@ export default function AdminPage() {
           <h2 className="text-xl font-bold">Painel Admin</h2>
         </SidebarHeader>
         <SidebarContent className="space-y-1">
-          <TabsList className="flex flex-col w-full">
-            <TabsTrigger value="dashboard" onClick={() => setActiveTab("dashboard")}
-              className="w-full text-left px-4 py-2 hover:bg-gray-200">
-              Dashboard
-            </TabsTrigger>
-            <TabsTrigger value="properties" onClick={() => setActiveTab("properties")}
-              className="w-full text-left px-4 py-2 hover:bg-gray-200">
-              Imóveis
-            </TabsTrigger>
-            <TabsTrigger value="agents" onClick={() => setActiveTab("agents")}
-              className="w-full text-left px-4 py-2 hover:bg-gray-200">
-              Corretores
-            </TabsTrigger>
-            <TabsTrigger value="messages" onClick={() => setActiveTab("messages")}
-              className="w-full text-left px-4 py-2 hover:bg-gray-200">
-              Mensagens
-            </TabsTrigger>
-          </TabsList>
+          <Tabs value={activeTab} orientation="vertical">
+            <TabsList className="flex flex-col w-full">
+              <TabsTrigger value="dashboard" onClick={() => setActiveTab("dashboard")}
+                className="w-full text-left px-4 py-2 hover:bg-gray-200">
+                Dashboard
+              </TabsTrigger>
+              <TabsTrigger value="properties" onClick={() => setActiveTab("properties")}
+                className="w-full text-left px-4 py-2 hover:bg-gray-200">
+                Imóveis
+              </TabsTrigger>
+              <TabsTrigger value="agents" onClick={() => setActiveTab("agents")}
+                className="w-full text-left px-4 py-2 hover:bg-gray-200">
+                Corretores
+              </TabsTrigger>
+              <TabsTrigger value="messages" onClick={() => setActiveTab("messages")}
+                className="w-full text-left px-4 py-2 hover:bg-gray-200">
+                Mensagens
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
         </SidebarContent>
       </Sidebar>
 
