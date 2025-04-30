@@ -153,6 +153,53 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Layout configuration routes
+  app.get(`${apiPrefix}/layout-config`, async (req, res) => {
+    try {
+      const configs = await storage.getAllLayoutConfigs();
+      res.json(configs);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch layout configs", error });
+    }
+  });
+
+  app.post(`${apiPrefix}/layout-config`, async (req, res) => {
+    try {
+      const validatedData = insertLayoutConfigSchema.safeParse(req.body);
+      
+      if (!validatedData.success) {
+        return res.status(400).json({ 
+          message: "Invalid layout config data", 
+          errors: validatedData.error.format() 
+        });
+      }
+      
+      const config = await storage.createLayoutConfig(validatedData.data);
+      res.status(201).json(config);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to create layout config", error });
+    }
+  });
+
+  app.put(`${apiPrefix}/layout-config/:id`, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const validatedData = insertLayoutConfigSchema.safeParse(req.body);
+      
+      if (!validatedData.success) {
+        return res.status(400).json({ 
+          message: "Invalid layout config data", 
+          errors: validatedData.error.format() 
+        });
+      }
+      
+      const config = await storage.updateLayoutConfig(id, validatedData.data);
+      res.json(config);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to update layout config", error });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

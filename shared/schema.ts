@@ -112,3 +112,21 @@ export type ContactMessage = typeof contactMessages.$inferSelect;
 
 export type InsertNewsletterSubscription = z.infer<typeof insertNewsletterSubscriptionSchema>;
 export type NewsletterSubscription = typeof newsletterSubscriptions.$inferSelect;
+
+// Layout configuration schema
+export const layoutConfigs = pgTable("layout_configs", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  value: json("value").$type<Record<string, any>>().notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const insertLayoutConfigSchema = createInsertSchema(layoutConfigs).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export type InsertLayoutConfig = z.infer<typeof insertLayoutConfigSchema>;
+export type LayoutConfig = typeof layoutConfigs.$inferSelect;
