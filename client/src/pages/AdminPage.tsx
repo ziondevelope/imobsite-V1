@@ -47,6 +47,7 @@ export default function AdminPage() {
   const [properties, setProperties] = useState<Property[]>([]);
   const [agents, setAgents] = useState<Agent[]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const checkAdmin = async () => {
@@ -60,8 +61,10 @@ export default function AdminPage() {
         
         // Fetch initial data
         const statsResponse = await fetch('/api/admin/stats');
-        const statsData = await statsResponse.json();
-        setStats(statsData);
+        if (statsResponse.ok) {
+          const statsData = await statsResponse.json();
+          setStats(statsData);
+        }
 
         // Fetch other data
         const [propertiesRes, agentsRes, messagesRes] = await Promise.all([
@@ -70,12 +73,23 @@ export default function AdminPage() {
           fetch('/api/contact/messages')
         ]);
 
-        setProperties(await propertiesRes.json());
-        setAgents(await agentsRes.json());
-        setMessages(await messagesRes.json());
+        if (propertiesRes.ok) {
+          const propertiesData = await propertiesRes.json();
+          setProperties(Array.isArray(propertiesData) ? propertiesData : []);
+        }
+        
+        if (agentsRes.ok) {
+          const agentsData = await agentsRes.json();
+          setAgents(Array.isArray(agentsData) ? agentsData : []);
+        }
+        
+        if (messagesRes.ok) {
+          const messagesData = await messagesRes.json();
+          setMessages(Array.isArray(messagesData) ? messagesData : []);
+        }
       } catch (error) {
         console.error('Error:', error);
-        setLocation('/');
+        setError('Failed to load data');
       }
     };
     checkAdmin();
