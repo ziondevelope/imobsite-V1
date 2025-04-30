@@ -205,6 +205,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Layout configuration routes
+  // Admin routes
+  app.get(`${apiPrefix}/admin/check`, async (req, res) => {
+    // TODO: Implement proper admin check
+    // For now, return ok
+    res.json({ isAdmin: true });
+  });
+
+  app.get(`${apiPrefix}/admin/stats`, async (req, res) => {
+    try {
+      const properties = await storage.getAllProperties();
+      const agents = await storage.getAllAgents();
+      const messages = await storage.getAllContactMessages();
+
+      res.json({
+        totalProperties: properties.length,
+        totalAgents: agents.length,
+        totalMessages: messages.length
+      });
+    } catch (error) {
+      res.status(500).json({ message: "Error fetching admin stats", error });
+    }
+  });
+
   app.get(`${apiPrefix}/layout-config`, async (req, res) => {
     try {
       const configs = await storage.getAllLayoutConfigs();

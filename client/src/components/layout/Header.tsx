@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/properties?status=rent", label: "Alugar" },
   { href: "/launches", label: "Lançamentos" },
   { href: "/contact", label: "Contato" },
+  { href: "/admin", label: "Admin" }, // Added admin link
 ];
 
 export default function Header() {
@@ -84,7 +85,7 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
-              
+
               {/* Mobile Contact Info */}
               <div className="mt-6 pt-4 border-t border-zinc-800">
                 <div className="flex flex-col space-y-3 text-sm text-gray-300">
