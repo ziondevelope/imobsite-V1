@@ -147,6 +147,31 @@ export class MemStorage implements IStorage {
   }
 
   async createProperty(insertProperty: InsertProperty): Promise<Property> {
+
+  async updateProperty(id: number, property: InsertProperty): Promise<Property> {
+    const existingProperty = this.properties.get(id);
+    if (!existingProperty) {
+      throw new Error(`Property with ID ${id} not found`);
+    }
+    
+    const updatedProperty: Property = { 
+      ...existingProperty,
+      ...property,
+      id,
+      updatedAt: new Date()
+    };
+    
+    this.properties.set(id, updatedProperty);
+    return updatedProperty;
+  }
+
+  async deleteProperty(id: number): Promise<void> {
+    if (!this.properties.has(id)) {
+      throw new Error(`Property with ID ${id} not found`);
+    }
+    this.properties.delete(id);
+  }
+
     const id = this.propertyCurrentId++;
     const now = new Date();
     const property: Property = { 

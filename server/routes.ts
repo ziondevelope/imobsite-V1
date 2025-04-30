@@ -3,8 +3,10 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { 
   insertContactMessageSchema, 
-  insertNewsletterSubscriptionSchema 
+  insertNewsletterSubscriptionSchema,
+  insertPropertySchema
 } from "@shared/schema";
+import { upload } from "./upload";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API routes prefix
@@ -145,6 +147,55 @@ export async function registerRoutes(app: Express): Promise<Server> {
           errors: validatedData.error.format() 
         });
       }
+
+  // Property Management Routes
+  app.post(`${apiPrefix}/properties`, async (req, res) => {
+    try {
+      const validatedData = insertPropertySchema.safeParse(req.body);
+      
+      if (!validatedData.success) {
+        return res.status(400).json({ 
+          message: "Dados do imóvel inválidos", 
+          errors: validatedData.error.format() 
+        });
+      }
+      
+      const property = await storage.createProperty(validatedData.data);
+      res.status(201).json(property);
+    } catch (error) {
+      res.status(500).json({ message: "Erro ao criar imóvel", error });
+    }
+  });
+
+  app.put(`${apiPrefix}/properties/:id`, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const validatedData = insertPropertySchema.safeParse(req.body);
+      
+      if (!validatedData.success) {
+        return res.status(400).json({ 
+          message: "Dados do imóvel inválidos", 
+          errors: validatedData.error.format() 
+        });
+      }
+      
+      const property = await storage.updateProperty(id, validatedData.data);
+      res.json(property);
+    } catch (error) {
+      res.status(500).json({ message: "Erro ao atualizar imóvel", error });
+    }
+  });
+
+  app.delete(`${apiPrefix}/properties/:id`, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      await storage.deleteProperty(id);
+      res.status(204).send();
+    } catch (error) {
+      res.status(500).json({ message: "Erro ao deletar imóvel", error });
+    }
+  });
+
       
       const subscription = await storage.createNewsletterSubscription(validatedData.data);
       res.status(201).json({ message: "Subscription successful", id: subscription.id });
